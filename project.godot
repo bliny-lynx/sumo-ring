@@ -11,9 +11,27 @@ config_version=5
 [application]
 
 config/name="ld55"
+run/main_scene="res://scene/lockerroom.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=480
+window/size/window_width_override=1280
+window/size/window_height_override=960
+window/stretch/mode="canvas_items"
 
 [editor]
 
 movie_writer/movie_file="/home/eal/gemudev/ld55/sample.avi"
+
+[gui]
+
+theme/custom_font="res://font/Px437_Wang_Pro_Mono.ttf"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+textures/default_filters/anisotropic_filtering_level=0
