@@ -12,9 +12,17 @@ texture = ExtResource("2_hc8q0")
 
 [node name="ItemList" type="ItemList" parent="."]
 offset_right = 65.0
-offset_bottom = 480.0
+offset_bottom = 152.0
 item_count = 4
 item_0/text = "susi"
 item_1/text = "onigiri"
 item_2/text = "sake"
 item_3/text = ""
+
+[node name="Button" type="Button" parent="."]
+offset_left = 600.0
+offset_right = 642.0
+offset_bottom = 25.0
+text = "FIGHT"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

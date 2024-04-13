@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqeatk6oiamho"]
+
+[ext_resource type="Texture2D" uid="uid://dog6h45jfr67e" path="res://sprite/sumoring.png" id="1_v8mh2"]
+
+[node name="SumoCircle" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(320, 241)
+texture = ExtResource("1_v8mh2")
