@@ -1,9 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://nt76ymcyuoeu"]
+[gd_scene load_steps=20 format=3 uid="uid://nt76ymcyuoeu"]
 
 [ext_resource type="Script" path="res://script/FatMan.gd" id="1_2fept"]
 [ext_resource type="Texture2D" uid="uid://c65avikp11nli" path="res://sprite/fat_man_angry.png" id="2_h1fnx"]
 [ext_resource type="Texture2D" uid="uid://36iccfarpdfh" path="res://sprite/fat_man_idle.png" id="2_yu84o"]
 [ext_resource type="Texture2D" uid="uid://btn6e3qfvwiye" path="res://sprite/fat_man_humala.png" id="4_tmtpy"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c6bnm"]
+friction = 0.85
+bounce = 0.45
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2xo0c"]
 radius = 12.0
@@ -111,18 +115,19 @@ animations = [{
 }]
 
 [node name="FatMan" type="RigidBody2D" groups=["wrestlers"]]
+physics_material_override = SubResource("PhysicsMaterial_c6bnm")
 gravity_scale = 1.66533e-16
 script = ExtResource("1_2fept")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(3, 3)
+scale = Vector2(2.5, 2.5)
 shape = SubResource("CircleShape2D_2xo0c")
 
 [node name="ImpulseCooldown" type="Timer" parent="."]
 wait_time = 0.665
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(3, 3)
+scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_v6vv6")
 animation = &"drunk"
 autoplay = "default"

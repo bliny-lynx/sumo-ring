@@ -28,7 +28,9 @@ func _process(_delta):
     progress_bar.points = PackedVector2Array([Vector2(-impulse_cd.time_left * 20, 0), Vector2(impulse_cd.time_left * 20, 0)])
 
 func _on_impulse_cooldown_timeout():
-    print_debug("applying pulse")
     apply_central_impulse(direction * power)
+    if facing_right:
+        power += randf_range(0, 2)
     power += randf_range(-1, 1)
+
 

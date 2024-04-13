@@ -13,3 +13,11 @@ func _process(_delta):
 func _on_timer_timeout():
     print_debug("fighting")
     get_tree().call_group("wrestlers", "unstage")
+
+
+func _on_lose_area_body_entered(body):
+    print("you lose!")
+
+
+func _on_victory_area_body_entered(body):
+    print("you win!")
