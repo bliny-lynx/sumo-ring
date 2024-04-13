@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhgukrjfu0veh"]
+
+[ext_resource type="Script" path="res://script/SwarmAttractor.gd" id="1_44ouu"]
+[ext_resource type="Texture2D" uid="uid://dprwmmkriuxqv" path="res://sprite/hunajapurnukka.png" id="2_6qatu"]
+
+[node name="SwarmAttractor" type="Node2D"]
+script = ExtResource("1_44ouu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_6qatu")

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cg33j0buywglq"]
+
+[ext_resource type="Script" path="res://script/swarm_unit.gd" id="1_n15jf"]
+[ext_resource type="Texture2D" uid="uid://bewk83b2p163m" path="res://sprite/hemiläinen.png" id="2_jduec"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ph3l0"]
+size = Vector2(26, 17)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_47uno"]
+radius = 27.0
+
+[node name="SwarmUnit" type="RigidBody2D"]
+mass = 0.17
+gravity_scale = 0.0
+script = ExtResource("1_n15jf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_jduec")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_ph3l0")
+
+[node name="PusherArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PusherArea"]
+shape = SubResource("CircleShape2D_47uno")
+
+[connection signal="area_entered" from="PusherArea" to="." method="_on_pusher_area_area_entered"]

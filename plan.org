@@ -1,0 +1,12 @@
+* Swarm
+** Ideas
+*** "Sumo ring"
+summon sumo wrestlers and other stuff, push your opponent out of the ring
+*** Swarm mechanics
+just playing around
+** Visuals
+*** Animation
+*** Style
+pixel, cartoon, ??
+** Audio
+** Storytelling?
