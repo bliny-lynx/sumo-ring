@@ -15,9 +15,9 @@ func _on_timer_timeout():
     get_tree().call_group("wrestlers", "unstage")
 
 
-func _on_lose_area_body_entered(body):
+func _on_lose_area_body_entered(_body):
     print("you lose!")
 
 
-func _on_victory_area_body_entered(body):
+func _on_victory_area_body_entered(_body):
     print("you win!")

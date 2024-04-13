@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://nt76ymcyuoeu"]
+[gd_scene load_steps=29 format=3 uid="uid://nt76ymcyuoeu"]
 
 [ext_resource type="Script" path="res://script/FatMan.gd" id="1_2fept"]
 [ext_resource type="Texture2D" uid="uid://c65avikp11nli" path="res://sprite/fat_man_angry.png" id="2_h1fnx"]
 [ext_resource type="Texture2D" uid="uid://36iccfarpdfh" path="res://sprite/fat_man_idle.png" id="2_yu84o"]
 [ext_resource type="Texture2D" uid="uid://btn6e3qfvwiye" path="res://sprite/fat_man_humala.png" id="4_tmtpy"]
+[ext_resource type="Texture2D" uid="uid://4sd74c5h1hsc" path="res://sprite/dustspin.png" id="5_v8l13"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c6bnm"]
 friction = 0.85
@@ -114,6 +115,63 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_nauy7"]
+atlas = ExtResource("5_v8l13")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7ciq"]
+atlas = ExtResource("5_v8l13")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hoabe"]
+atlas = ExtResource("5_v8l13")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btwtc"]
+atlas = ExtResource("5_v8l13")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1odo"]
+atlas = ExtResource("5_v8l13")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7sdp"]
+atlas = ExtResource("5_v8l13")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43abs"]
+atlas = ExtResource("5_v8l13")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1oxos"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nauy7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7ciq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hoabe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btwtc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1odo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7sdp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43abs")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
 [node name="FatMan" type="RigidBody2D" groups=["wrestlers"]]
 physics_material_override = SubResource("PhysicsMaterial_c6bnm")
 gravity_scale = 1.66533e-16
@@ -137,5 +195,13 @@ position = Vector2(0, -53)
 points = PackedVector2Array(0, 0)
 width = 6.0
 default_color = Color(0.254902, 0.254902, 0.254902, 1)
+
+[node name="Dustspin" type="AnimatedSprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.756863)
+position = Vector2(-46, 32)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_1oxos")
+frame_progress = 1.0
 
 [connection signal="timeout" from="ImpulseCooldown" to="." method="_on_impulse_cooldown_timeout"]
