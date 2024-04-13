@@ -1,34 +1,33 @@
 extends RigidBody2D
 
-enum {STAGED, MOVING, FIGHTING}
+enum {STAGED, MOVING}
 
 var state: = STAGED # essentially paused, the characters spawn first and then run at each other
 @export var facing_right = true
 var direction = Vector2.RIGHT
 @onready var impulse_cd = $ImpulseCooldown
+@onready var progress_bar = $Line2D
+var power = 7
 
 func _ready():
     if not facing_right:
         direction = Vector2.LEFT
-    else:
         $Sprite2D.flip_h = true
+    else:
+        $Sprite2D.play("drunk")
 
 func unstage():
+    impulse_cd.start()
     state = MOVING
 
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
     if state == STAGED:
         return
-    if state == MOVING:
-        apply_central_impulse(direction)
-    if state == FIGHTING:
-        print("not implemented")
-        # do something else
-
-
+    progress_bar.points = PackedVector2Array([Vector2(-impulse_cd.time_left * 10, 0), Vector2(impulse_cd.time_left * 10, 0)])
 
 func _on_impulse_cooldown_timeout():
-    apply_central_impulse(direction)
+    print_debug("applying pulse")
+    apply_central_impulse(direction * power)
+    power += randf_range(-1, 1)
+

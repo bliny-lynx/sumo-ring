@@ -1,22 +1,134 @@
-[gd_scene load_steps=4 format=3 uid="uid://nt76ymcyuoeu"]
+[gd_scene load_steps=19 format=3 uid="uid://nt76ymcyuoeu"]
 
-[ext_resource type="Texture2D" uid="uid://cgy51ugy4vtgu" path="res://sprite/fat_man_1.png" id="1_2bwaf"]
 [ext_resource type="Script" path="res://script/FatMan.gd" id="1_2fept"]
+[ext_resource type="Texture2D" uid="uid://c65avikp11nli" path="res://sprite/fat_man_angry.png" id="2_h1fnx"]
+[ext_resource type="Texture2D" uid="uid://36iccfarpdfh" path="res://sprite/fat_man_idle.png" id="2_yu84o"]
+[ext_resource type="Texture2D" uid="uid://btn6e3qfvwiye" path="res://sprite/fat_man_humala.png" id="4_tmtpy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2xo0c"]
 radius = 12.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11q2d"]
+atlas = ExtResource("2_h1fnx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4g3gv"]
+atlas = ExtResource("2_h1fnx")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqcui"]
+atlas = ExtResource("2_h1fnx")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rv65"]
+atlas = ExtResource("2_h1fnx")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhxhv"]
+atlas = ExtResource("2_yu84o")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j71nn"]
+atlas = ExtResource("2_yu84o")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxs1d"]
+atlas = ExtResource("2_yu84o")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjdj5"]
+atlas = ExtResource("2_yu84o")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1b0n"]
+atlas = ExtResource("4_tmtpy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0s18v"]
+atlas = ExtResource("4_tmtpy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikqom"]
+atlas = ExtResource("4_tmtpy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5120"]
+atlas = ExtResource("4_tmtpy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v6vv6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11q2d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4g3gv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqcui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rv65")
+}],
+"loop": true,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhxhv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j71nn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxs1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wjdj5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1b0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0s18v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikqom")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5120")
+}],
+"loop": true,
+"name": &"drunk",
+"speed": 5.0
+}]
 
 [node name="FatMan" type="RigidBody2D" groups=["wrestlers"]]
 gravity_scale = 1.66533e-16
 script = ExtResource("1_2fept")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_2bwaf")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_2xo0c")
 
 [node name="ImpulseCooldown" type="Timer" parent="."]
-wait_time = 0.384
+wait_time = 0.665
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_v6vv6")
+animation = &"drunk"
+autoplay = "default"
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(0, -17)
+points = PackedVector2Array(0, 0)
+width = 3.0
+default_color = Color(0.254902, 0.254902, 0.254902, 1)
 
 [connection signal="timeout" from="ImpulseCooldown" to="." method="_on_impulse_cooldown_timeout"]
