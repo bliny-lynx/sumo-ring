@@ -1,9 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqeatk6oiamho"]
+[gd_scene load_steps=4 format=3 uid="uid://dqeatk6oiamho"]
 
+[ext_resource type="Script" path="res://scene/sumo_circle.gd" id="1_qkgst"]
 [ext_resource type="Texture2D" uid="uid://dog6h45jfr67e" path="res://sprite/sumoring.png" id="1_v8mh2"]
+[ext_resource type="PackedScene" uid="uid://nt76ymcyuoeu" path="res://scene/fat_man.tscn" id="2_35j1d"]
 
 [node name="SumoCircle" type="Node2D"]
+script = ExtResource("1_qkgst")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(320, 241)
 texture = ExtResource("1_v8mh2")
+
+[node name="FatMan" parent="." instance=ExtResource("2_35j1d")]
+position = Vector2(213, 387)
+
+[node name="FatMan2" parent="." instance=ExtResource("2_35j1d")]
+position = Vector2(432, 387)
+facing_right = false
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
