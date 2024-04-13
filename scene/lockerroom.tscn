@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cs01ywxtb0wdp"]
+
+[ext_resource type="Script" path="res://script/lockerroom.gd" id="1_e7bpc"]
+[ext_resource type="Texture2D" uid="uid://b774bgduhygtq" path="res://sprite/lockerplaceholder.png" id="2_hc8q0"]
+
+[node name="Lockerroom" type="Node2D"]
+script = ExtResource("1_e7bpc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(321, 240)
+texture = ExtResource("2_hc8q0")
+
+[node name="ItemList" type="ItemList" parent="."]
+offset_right = 65.0
+offset_bottom = 480.0
+item_count = 4
+item_0/text = "susi"
+item_1/text = "onigiri"
+item_2/text = "sake"
+item_3/text = ""
