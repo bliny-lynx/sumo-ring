@@ -37,6 +37,8 @@ func summon(type):
     new_item.position = item_slots[index].position
     add_child(new_item)
     index += 1
+    if index >= len(item_slots):
+        $Summonbutton.disabled = true
 
 var effects = [
     "+weight\n+strength\n20 mana",
