@@ -8,6 +8,7 @@ var direction = Vector2.RIGHT
 @onready var impulse_cd = $ImpulseCooldown
 @onready var progress_bar = $Line2D
 var power = 7
+var size = 3.0
 
 func _ready():
     if not facing_right:
@@ -24,7 +25,7 @@ func unstage():
 func _process(_delta):
     if state == STAGED:
         return
-    progress_bar.points = PackedVector2Array([Vector2(-impulse_cd.time_left * 10, 0), Vector2(impulse_cd.time_left * 10, 0)])
+    progress_bar.points = PackedVector2Array([Vector2(-impulse_cd.time_left * 20, 0), Vector2(impulse_cd.time_left * 20, 0)])
 
 func _on_impulse_cooldown_timeout():
     print_debug("applying pulse")

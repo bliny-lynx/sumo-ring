@@ -115,20 +115,22 @@ gravity_scale = 1.66533e-16
 script = ExtResource("1_2fept")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_2xo0c")
 
 [node name="ImpulseCooldown" type="Timer" parent="."]
 wait_time = 0.665
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_v6vv6")
 animation = &"drunk"
 autoplay = "default"
 
 [node name="Line2D" type="Line2D" parent="."]
-position = Vector2(0, -17)
+position = Vector2(0, -53)
 points = PackedVector2Array(0, 0)
-width = 3.0
+width = 6.0
 default_color = Color(0.254902, 0.254902, 0.254902, 1)
 
 [connection signal="timeout" from="ImpulseCooldown" to="." method="_on_impulse_cooldown_timeout"]

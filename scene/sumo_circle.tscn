@@ -13,9 +13,11 @@ texture = ExtResource("1_v8mh2")
 
 [node name="FatMan" parent="." instance=ExtResource("2_35j1d")]
 position = Vector2(213, 387)
+scale = Vector2(3, 3)
 
 [node name="FatMan2" parent="." instance=ExtResource("2_35j1d")]
 position = Vector2(432, 387)
+scale = Vector2(3, 3)
 facing_right = false
 
 [node name="Timer" type="Timer" parent="."]
