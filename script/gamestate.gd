@@ -1,5 +1,7 @@
 extends Node
 
+enum Phase {INTRO, LOCKER, BATTLE}
+var phase = Phase.INTRO
 enum Item {SUSI, SAKE, ONIGIRI, FAIL_SUMMON = -1}
 var equipped_items = []
 var mana = 10.0
@@ -8,7 +10,7 @@ var items = {
     Item.SUSI: {
         "description": "+weight\n+strength\n4 mana",
         "cost": 4,
-        "growth": 0.3,
+        "growth": 0.2,
         "alcohol": null,
         "strength": 0.5,
         "texture": "res://sprite/Sushirulla.png"
@@ -24,7 +26,7 @@ var items = {
     Item.ONIGIRI: {
         "description": "++weight\n3 mana",
         "cost": 3,
-        "growth": 0.7,
+        "growth": 0.4,
         "strength": 0.1,
         "alcohol": null,
         "texture": "res://sprite/Onigiri.png"
@@ -32,17 +34,24 @@ var items = {
 }
 
 func status_effects():
+    if phase < Phase.BATTLE:
+        print_debug("not yet battle")
+        return null
     var weight_effect = 0.0
     var alcohol = 0
+    var strength = 0.0
     for item in equipped_items:
         if item["growth"]: weight_effect += item["growth"]
         if item["alcohol"]: alcohol += item["alcohol"]
+        if item["strength"]: strength += item["strength"]
     return {
         "weight": weight_effect,
-        "inebriation": alcohol
+        "inebriation": alcohol,
+        "strength": strength
     }
 
 func _ready():
+    phase = Phase.INTRO
     mana = max_mana
 
 func equip(item):
@@ -55,5 +64,3 @@ func get_mana_per_cent():
     return (mana / max_mana) * 100
 
 
-func _process(_delta):
-    pass

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c71rpn7qnyqrp"
-path="res://.godot/imported/fat_man_sammuminen.png-15ff1069dee54dfcdd4c217b01c48d56.ctex"
+uid="uid://c7jtv2i3qielt"
+path="res://.godot/imported/kupla.png-90907e1d61c31988ec93c657f13b979c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite/fat_man_sammuminen.png"
-dest_files=["res://.godot/imported/fat_man_sammuminen.png-15ff1069dee54dfcdd4c217b01c48d56.ctex"]
+source_file="res://sprite/kupla.png"
+dest_files=["res://.godot/imported/kupla.png-90907e1d61c31988ec93c657f13b979c.ctex"]
 
 [params]
 

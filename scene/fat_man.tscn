@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://nt76ymcyuoeu"]
+[gd_scene load_steps=52 format=3 uid="uid://nt76ymcyuoeu"]
 
 [ext_resource type="Script" path="res://script/FatMan.gd" id="1_2fept"]
 [ext_resource type="Texture2D" uid="uid://c65avikp11nli" path="res://sprite/fat_man_angry.png" id="2_h1fnx"]
@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://btn6e3qfvwiye" path="res://sprite/fat_man_humala.png" id="4_tmtpy"]
 [ext_resource type="Texture2D" uid="uid://dqnyje8gae384" path="res://sprite/drunk_fall.png" id="5_8div0"]
 [ext_resource type="Texture2D" uid="uid://4sd74c5h1hsc" path="res://sprite/dustspin.png" id="5_v8l13"]
-[ext_resource type="Texture2D" uid="uid://c71rpn7qnyqrp" path="res://sprite/fat_man_sammuminen.png" id="6_0avyi"]
 [ext_resource type="Texture2D" uid="uid://gpmrdr6e280o" path="res://sprite/fat_man_recover.png" id="7_myjl0"]
+[ext_resource type="Texture2D" uid="uid://c7jtv2i3qielt" path="res://sprite/kupla.png" id="8_euxl0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c6bnm"]
 friction = 0.85
@@ -80,9 +80,9 @@ region = Rect2(64, 0, 32, 32)
 atlas = ExtResource("5_8div0")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_btasn"]
-atlas = ExtResource("6_0avyi")
-region = Rect2(0, 0, 128, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3p66"]
+atlas = ExtResource("5_8div0")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2myjc"]
 atlas = ExtResource("7_myjl0")
@@ -172,7 +172,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_btasn")
+"texture": SubResource("AtlasTexture_t3p66")
 }],
 "loop": true,
 "name": &"passed_out",
@@ -253,7 +253,86 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_auhyf"]
+atlas = ExtResource("8_euxl0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivtbq"]
+atlas = ExtResource("8_euxl0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0u40e"]
+atlas = ExtResource("8_euxl0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt5ns"]
+atlas = ExtResource("8_euxl0")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsp25"]
+atlas = ExtResource("8_euxl0")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swsvr"]
+atlas = ExtResource("8_euxl0")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikvid"]
+atlas = ExtResource("8_euxl0")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1fwj"]
+atlas = ExtResource("8_euxl0")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ogqh"]
+atlas = ExtResource("8_euxl0")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3xg6"]
+atlas = ExtResource("8_euxl0")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aqyxh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_auhyf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivtbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0u40e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt5ns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fsp25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swsvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikvid")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1fwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ogqh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3xg6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
 [node name="FatMan" type="RigidBody2D" groups=["wrestlers"]]
+mass = 86.48
 physics_material_override = SubResource("PhysicsMaterial_c6bnm")
 gravity_scale = 1.66533e-16
 script = ExtResource("1_2fept")
@@ -269,7 +348,6 @@ wait_time = 1.151
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_v6vv6")
-animation = &"recover"
 autoplay = "default"
 
 [node name="Line2D" type="Line2D" parent="."]
@@ -280,10 +358,17 @@ default_color = Color(0.254902, 0.254902, 0.254902, 1)
 
 [node name="Dustspin" type="AnimatedSprite2D" parent="."]
 visible = false
-modulate = Color(1, 1, 1, 0.756863)
+modulate = Color(1, 1, 1, 0.545098)
 position = Vector2(-46, 32)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_1oxos")
 frame_progress = 1.0
 
+[node name="Statuseffect" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-22, -32)
+sprite_frames = SubResource("SpriteFrames_aqyxh")
+autoplay = "default"
+
 [connection signal="timeout" from="ImpulseCooldown" to="." method="_on_impulse_cooldown_timeout"]
+[connection signal="animation_finished" from="Sprite2D" to="." method="_on_sprite_2d_animation_finished"]

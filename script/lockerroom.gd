@@ -12,6 +12,7 @@ func _ready():
     $TextureProgressBar.value = Gamestate.get_mana_per_cent()
     $FatMan.get_node("Sprite2D").play("default")
     $FatMan.get_node("Sprite2D").stop()
+    Gamestate.phase = Gamestate.Phase.LOCKER
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
