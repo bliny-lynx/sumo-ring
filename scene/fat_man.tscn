@@ -1,17 +1,20 @@
-[gd_scene load_steps=29 format=3 uid="uid://nt76ymcyuoeu"]
+[gd_scene load_steps=41 format=3 uid="uid://nt76ymcyuoeu"]
 
 [ext_resource type="Script" path="res://script/FatMan.gd" id="1_2fept"]
 [ext_resource type="Texture2D" uid="uid://c65avikp11nli" path="res://sprite/fat_man_angry.png" id="2_h1fnx"]
 [ext_resource type="Texture2D" uid="uid://36iccfarpdfh" path="res://sprite/fat_man_idle.png" id="2_yu84o"]
 [ext_resource type="Texture2D" uid="uid://btn6e3qfvwiye" path="res://sprite/fat_man_humala.png" id="4_tmtpy"]
+[ext_resource type="Texture2D" uid="uid://dqnyje8gae384" path="res://sprite/drunk_fall.png" id="5_8div0"]
 [ext_resource type="Texture2D" uid="uid://4sd74c5h1hsc" path="res://sprite/dustspin.png" id="5_v8l13"]
+[ext_resource type="Texture2D" uid="uid://c71rpn7qnyqrp" path="res://sprite/fat_man_sammuminen.png" id="6_0avyi"]
+[ext_resource type="Texture2D" uid="uid://gpmrdr6e280o" path="res://sprite/fat_man_recover.png" id="7_myjl0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c6bnm"]
 friction = 0.85
 bounce = 0.45
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2xo0c"]
-radius = 12.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1h2ct"]
+size = Vector2(22.5, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_11q2d"]
 atlas = ExtResource("2_h1fnx")
@@ -59,6 +62,42 @@ region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y5120"]
 atlas = ExtResource("4_tmtpy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7chg"]
+atlas = ExtResource("5_8div0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gqcr"]
+atlas = ExtResource("5_8div0")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1msc"]
+atlas = ExtResource("5_8div0")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unu0m"]
+atlas = ExtResource("5_8div0")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btasn"]
+atlas = ExtResource("6_0avyi")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2myjc"]
+atlas = ExtResource("7_myjl0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi1f0"]
+atlas = ExtResource("7_myjl0")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qs0mn"]
+atlas = ExtResource("7_myjl0")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrcnc"]
+atlas = ExtResource("7_myjl0")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v6vv6"]
@@ -113,6 +152,48 @@ animations = [{
 "loop": true,
 "name": &"drunk",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7chg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gqcr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1msc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unu0m")
+}],
+"loop": false,
+"name": &"fall",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btasn")
+}],
+"loop": true,
+"name": &"passed_out",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2myjc")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_wi1f0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qs0mn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrcnc")
+}],
+"loop": false,
+"name": &"recover",
+"speed": 16.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nauy7"]
@@ -178,16 +259,17 @@ gravity_scale = 1.66533e-16
 script = ExtResource("1_2fept")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(2.5, 2.5)
-shape = SubResource("CircleShape2D_2xo0c")
+position = Vector2(0.5, 0)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_1h2ct")
 
 [node name="ImpulseCooldown" type="Timer" parent="."]
-wait_time = 0.665
+wait_time = 1.151
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(2.5, 2.5)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_v6vv6")
-animation = &"drunk"
+animation = &"recover"
 autoplay = "default"
 
 [node name="Line2D" type="Line2D" parent="."]

@@ -1,14 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cs01ywxtb0wdp"]
+[gd_scene load_steps=9 format=3 uid="uid://cs01ywxtb0wdp"]
 
 [ext_resource type="Script" path="res://script/lockerroom.gd" id="1_e7bpc"]
 [ext_resource type="Texture2D" uid="uid://b774bgduhygtq" path="res://sprite/lockerplaceholder.png" id="2_hc8q0"]
 [ext_resource type="Texture2D" uid="uid://cgqmjxbryo30r" path="res://sprite/Sushirulla.png" id="3_ob1nk"]
 [ext_resource type="Texture2D" uid="uid://dcdqs54oljlbi" path="res://sprite/Onigiri.png" id="4_d8f2w"]
 [ext_resource type="Texture2D" uid="uid://lnmgy5j7v6d" path="res://sprite/Sake.png" id="5_yufq3"]
+[ext_resource type="Texture2D" uid="uid://cs1sb8p262qpp" path="res://sprite/manabar.png" id="6_706wd"]
+[ext_resource type="Texture2D" uid="uid://cqli0kdlw01ng" path="res://sprite/manabarbg.png" id="6_cpmue"]
 [ext_resource type="PackedScene" uid="uid://nt76ymcyuoeu" path="res://scene/fat_man.tscn" id="6_d8rjf"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_aoji3"]
-size = Vector2(100, 10)
 
 [node name="Lockerroom" type="Node2D"]
 script = ExtResource("1_e7bpc")
@@ -42,9 +41,9 @@ scale = Vector2(2, 2)
 text = "FIGHT"
 
 [node name="Effectinfo" type="Label" parent="."]
-offset_left = 181.0
+offset_left = 182.0
 offset_top = 129.0
-offset_right = 226.0
+offset_right = 240.0
 offset_bottom = 146.0
 
 [node name="Summonbutton" type="Button" parent="."]
@@ -56,13 +55,14 @@ disabled = true
 text = "SUMMON"
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-offset_left = 95.0
-offset_top = 112.0
-offset_right = 176.0
-offset_bottom = 122.0
+offset_left = 87.0
+offset_top = 103.0
+offset_right = 188.0
+offset_bottom = 119.0
 value = 1.0
 rounded = true
-texture_progress = SubResource("PlaceholderTexture2D_aoji3")
+texture_under = ExtResource("6_cpmue")
+texture_progress = ExtResource("6_706wd")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(175, 320)
@@ -75,6 +75,9 @@ position = Vector2(337, 324)
 
 [node name="Marker2D4" type="Marker2D" parent="."]
 position = Vector2(414, 321)
+
+[node name="Marker2D5" type="Marker2D" parent="."]
+position = Vector2(475, 320)
 
 [node name="FatMan" parent="." instance=ExtResource("6_d8rjf")]
 position = Vector2(320, 174)

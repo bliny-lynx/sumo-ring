@@ -4,7 +4,7 @@ extends Node2D
 
 var consumable = load("res://scene/consumable.tscn")
 var curr_idx = 0
-@onready var item_slots = [$Marker2D, $Marker2D2, $Marker2D3, $Marker2D4]
+@onready var item_slots = [$Marker2D, $Marker2D2, $Marker2D3, $Marker2D4, $Marker2D5]
 
 
 # Called when the node enters the scene tree for the first time.
@@ -40,11 +40,25 @@ func summon(type):
     new_item.position = item_slots[curr_idx].position
     add_child(new_item)
     curr_idx += 1
+    Gamestate.equip(item_desc)
+    # below is just for effect display
     if curr_idx >= len(item_slots):
         $Summonbutton.disabled = true
+    if item_desc["growth"]:
+        $FatMan.grow(item_desc["growth"])
+    if item_desc["alcohol"]:
+        $FatMan.drink()
+    elif $FatMan.downed():
+        $FatMan.recover()
 
+func fail_summon():
+    #TODO(sound): play fail sound
+    var new_item = consumable.instantiate()
+    new_item.type = Gamestate.Item.FAIL_SUMMON
+    new_item.position = item_slots[curr_idx].position
+    add_child(new_item)
 
-func _on_item_list_item_clicked(index, at_position, mouse_button_index):
+func _on_item_list_item_clicked(index, _at_position, _mouse_button_index):
     $Summonbutton.disabled = (curr_idx >= len(item_slots))
 
     effect_info.text = Gamestate.items[index]["description"]
@@ -52,5 +66,6 @@ func _on_item_list_item_clicked(index, at_position, mouse_button_index):
 func _on_summonbutton_pressed():
     var type = $ItemList.get_selected_items()[0]
     if !can_summon(type):
+        fail_summon()
         return
     summon(type)

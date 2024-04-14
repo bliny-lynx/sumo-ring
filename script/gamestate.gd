@@ -1,37 +1,51 @@
 extends Node
 
-enum Item {SUSI, SAKE, ONIGIRI}
+enum Item {SUSI, SAKE, ONIGIRI, FAIL_SUMMON = -1}
 var equipped_items = []
 var mana = 10.0
-var max_mana = 90.0
+var max_mana = 22.0
 var items = {
     Item.SUSI: {
-        "description": "+weight\n+strength\n30 mana",
-        "cost": 30,
+        "description": "+weight\n+strength\n4 mana",
+        "cost": 4,
+        "growth": 0.3,
+        "alcohol": null,
+        "strength": 0.5,
         "texture": "res://sprite/Sushirulla.png"
     },
     Item.SAKE: {
-        "description": "+anger\n+inebriation\n40 mana",
-        "cost": 40,
+        "description": "+anger\n+inebriation\n6 mana",
+        "cost": 6,
+        "growth": null,
+        "alcohol": 1,
+        "strength": 0.3,
         "texture": "res://sprite/Sake.png"
     },
     Item.ONIGIRI: {
-        "description": "++weight\n20 mana",
-        "cost": 20,
+        "description": "++weight\n3 mana",
+        "cost": 3,
+        "growth": 0.7,
+        "strength": 0.1,
+        "alcohol": null,
         "texture": "res://sprite/Onigiri.png"
     }
 }
-var effects = [
-    "+weight\n+strength\n30 mana",
-    "+strength\n+anger\n+danger\n40 mana",
-    "++weight\n20 mana"
-]
-var mana_costs = [30, 40, 20]
-# Called when the node enters the scene tree for the first time.
+
+func status_effects():
+    var weight_effect = 0.0
+    var alcohol = 0
+    for item in equipped_items:
+        if item["growth"]: weight_effect += item["growth"]
+        if item["alcohol"]: alcohol += item["alcohol"]
+    return {
+        "weight": weight_effect,
+        "inebriation": alcohol
+    }
+
 func _ready():
     mana = max_mana
 
-func add_item(item):
+func equip(item):
     equipped_items.append(item)
 
 func spend_mana(amount):
@@ -40,6 +54,6 @@ func spend_mana(amount):
 func get_mana_per_cent():
     return (mana / max_mana) * 100
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(_delta):
     pass

@@ -31,12 +31,14 @@ one_shot = true
 position = Vector2(528, 376)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VictoryArea"]
+position = Vector2(2, 15)
 shape = SubResource("RectangleShape2D_035ip")
 
 [node name="LoseArea" type="Area2D" parent="."]
 position = Vector2(133, 379)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LoseArea"]
+position = Vector2(-3, -3)
 shape = SubResource("RectangleShape2D_7skns")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
