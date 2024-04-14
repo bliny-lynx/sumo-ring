@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cs01ywxtb0wdp"]
+[gd_scene load_steps=8 format=3 uid="uid://cs01ywxtb0wdp"]
 
 [ext_resource type="Script" path="res://script/lockerroom.gd" id="1_e7bpc"]
 [ext_resource type="Texture2D" uid="uid://b774bgduhygtq" path="res://sprite/lockerplaceholder.png" id="2_hc8q0"]
 [ext_resource type="Texture2D" uid="uid://cgqmjxbryo30r" path="res://sprite/Sushirulla.png" id="3_ob1nk"]
 [ext_resource type="Texture2D" uid="uid://dcdqs54oljlbi" path="res://sprite/Onigiri.png" id="4_d8f2w"]
 [ext_resource type="Texture2D" uid="uid://lnmgy5j7v6d" path="res://sprite/Sake.png" id="5_yufq3"]
+[ext_resource type="PackedScene" uid="uid://nt76ymcyuoeu" path="res://scene/fat_man.tscn" id="6_d8rjf"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_aoji3"]
 size = Vector2(100, 10)
@@ -27,10 +28,10 @@ auto_height = true
 item_count = 3
 item_0/text = "susi"
 item_0/icon = ExtResource("3_ob1nk")
-item_1/text = "onigiri"
-item_1/icon = ExtResource("4_d8f2w")
-item_2/text = "sake"
-item_2/icon = ExtResource("5_yufq3")
+item_1/text = "sake"
+item_1/icon = ExtResource("5_yufq3")
+item_2/text = "onigiri"
+item_2/icon = ExtResource("4_d8f2w")
 
 [node name="Button" type="Button" parent="."]
 offset_left = 501.0
@@ -59,9 +60,8 @@ offset_left = 95.0
 offset_top = 112.0
 offset_right = 176.0
 offset_bottom = 122.0
-max_value = 1.0
-step = 2.08165e-12
 value = 1.0
+rounded = true
 texture_progress = SubResource("PlaceholderTexture2D_aoji3")
 
 [node name="Marker2D" type="Marker2D" parent="."]
@@ -72,6 +72,12 @@ position = Vector2(259, 324)
 
 [node name="Marker2D3" type="Marker2D" parent="."]
 position = Vector2(337, 324)
+
+[node name="Marker2D4" type="Marker2D" parent="."]
+position = Vector2(414, 321)
+
+[node name="FatMan" parent="." instance=ExtResource("6_d8rjf")]
+position = Vector2(320, 174)
 
 [connection signal="item_clicked" from="ItemList" to="." method="_on_item_list_item_clicked"]
 [connection signal="mouse_entered" from="ItemList" to="." method="_on_item_list_mouse_entered"]

@@ -3,20 +3,20 @@ extends Node2D
 @onready var effect_info = $Effectinfo
 
 var consumable = load("res://scene/consumable.tscn")
-var index = 0
-@onready var item_slots = [$Marker2D, $Marker2D2, $Marker2D3]
-var mana_costs = [20, 15, 40]
+var curr_idx = 0
+@onready var item_slots = [$Marker2D, $Marker2D2, $Marker2D3, $Marker2D4]
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    $TextureProgressBar.value = Gamestate.mana / Gamestate.max_mana
+    $TextureProgressBar.value = Gamestate.get_mana_per_cent()
+    $FatMan.get_node("Sprite2D").play("default")
+    $FatMan.get_node("Sprite2D").stop()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-    print_debug(Gamestate.mana)
-    $TextureProgressBar.value = Gamestate.mana / Gamestate.max_mana
-    print_debug($TextureProgressBar.value)
+    $TextureProgressBar.value = Gamestate.get_mana_per_cent()
 
 
 func _on_button_pressed():
@@ -26,31 +26,31 @@ func _on_button_pressed():
 func _on_item_list_mouse_entered():
     effect_info.visible = true
 
+func can_summon(type):
+    return Gamestate.items[type]["cost"] <= Gamestate.mana
+
 func summon(type):
-    print_debug("index ", index, "slots ", len(item_slots))
-    if index >= len(item_slots):
+    if curr_idx >= len(item_slots):
         print_debug("full items")
         return
+    var item_desc = Gamestate.items[type]
     var new_item = consumable.instantiate()
-    Gamestate.spend_mana(mana_costs[type])
+    Gamestate.spend_mana(item_desc["cost"])
     new_item.type = type
-    new_item.position = item_slots[index].position
+    new_item.position = item_slots[curr_idx].position
     add_child(new_item)
-    index += 1
-    if index >= len(item_slots):
+    curr_idx += 1
+    if curr_idx >= len(item_slots):
         $Summonbutton.disabled = true
 
-var effects = [
-    "+weight\n+strength\n20 mana",
-    "++weight\n15 mana",
-    "+strength\n+anger\n+danger\n40 mana"
-]
 
 func _on_item_list_item_clicked(index, at_position, mouse_button_index):
-    $Summonbutton.disabled = false
-    effect_info.text = effects[index]
+    $Summonbutton.disabled = (curr_idx >= len(item_slots))
 
+    effect_info.text = Gamestate.items[index]["description"]
 
 func _on_summonbutton_pressed():
-    print_debug($ItemList.get_selected_items())
-    summon($ItemList.get_selected_items()[0])
+    var type = $ItemList.get_selected_items()[0]
+    if !can_summon(type):
+        return
+    summon(type)
