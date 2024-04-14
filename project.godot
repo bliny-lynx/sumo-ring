@@ -14,6 +14,7 @@ config/name="Sumo Ring"
 config/description="LD55 game."
 run/main_scene="res://scene/cutscene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/image="res://sprite/sumo_ring_splash.png"
 config/icon="res://sprite/Sake.png"
 
 [autoload]
