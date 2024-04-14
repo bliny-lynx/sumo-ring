@@ -9,6 +9,9 @@ var curr_idx = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+    Audio.init_audio()
+    Audio.play_bg_music()
+    $SceneTransition.fade_in()
     $TextureProgressBar.value = Gamestate.get_mana_per_cent()
     $FatMan.get_node("Sprite2D").play("default")
     $FatMan.get_node("Sprite2D").stop()
@@ -21,7 +24,11 @@ func _process(_delta):
 
 
 func _on_button_pressed():
-   get_tree().change_scene_to_file("res://scene/sumo_circle.tscn")
+    $Timer.start()
+    $SceneTransition.fade_out()
+
+func enter_battle():
+    get_tree().change_scene_to_file("res://scene/sumo_circle.tscn")
 
 
 func _on_item_list_mouse_entered():
@@ -46,8 +53,10 @@ func summon(type):
     if curr_idx >= len(item_slots):
         $Summonbutton.disabled = true
     if item_desc["growth"]:
+        Audio.food_sfx()
         $FatMan.grow(item_desc["growth"])
     if item_desc["alcohol"]:
+        Audio.drink_sfx()
         $FatMan.drink()
     elif $FatMan.downed():
         $FatMan.recover()
@@ -70,3 +79,7 @@ func _on_summonbutton_pressed():
         fail_summon()
         return
     summon(type)
+
+
+func _on_timer_timeout():
+    enter_battle()

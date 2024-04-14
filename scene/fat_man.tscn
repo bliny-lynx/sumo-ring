@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c7jtv2i3qielt" path="res://sprite/kupla.png" id="8_euxl0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c6bnm"]
-friction = 0.85
+friction = 0.83
 bounce = 0.45
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1h2ct"]
@@ -332,7 +332,7 @@ animations = [{
 }]
 
 [node name="FatMan" type="RigidBody2D" groups=["wrestlers"]]
-mass = 86.48
+mass = 13.37
 physics_material_override = SubResource("PhysicsMaterial_c6bnm")
 gravity_scale = 1.66533e-16
 script = ExtResource("1_2fept")

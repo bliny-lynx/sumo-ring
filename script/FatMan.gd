@@ -31,22 +31,26 @@ func setup():
     if not facing_right:
         return
     var status = Gamestate.status_effects()
-    print_debug("before setup size: ", size, " power: ", power, " drunk: ", inebriation)
+    print_debug("before setup size: ", size, " power: ", power, " drunk: ", inebriation,
+    " speed: ", impulse_cd.wait_time, " mass: ", mass)
     drink(status["inebriation"])
     target_size += status["weight"]
+    mass += status["weight"]
     power += status["strength"]
+    impulse_cd.wait_time += status["slow"]
     size = target_size
-    print_debug("after setup size: ", size, " power: ", power, " drunk: ", inebriation)
+    print_debug("after setup size: ", size, " power: ", power, " drunk: ", inebriation,
+    " speed: ", impulse_cd.wait_time, " mass: ", mass)
 
 func unstage():
     impulse_cd.start()
-    state = MOVING
+    if state != DOWNED:
+        state = MOVING
 
 func downed():
     return state == DOWNED
 
 func recover():
-    print_debug("recovering...")
     $Sprite2D.play("recover")
     next_anim = "drunk"
     inebriation -= 1
@@ -56,14 +60,16 @@ func recover():
 
 func drink(amount=1):
     inebriation += amount
+    print_debug("drunk ", inebriation)
     if inebriation < len(drunk_anims):
         $Sprite2D.play(drunk_anims[inebriation])
     if inebriation >= len(drunk_anims) - 1:
-        $Sprite2D.play(drunk_anims[-1])
-        next_anim = "passed_out"
-        state = DOWNED
-    if downed():
-        impulse_cd.stop()
+        fall()
+
+func fall():
+    $Sprite2D.play(drunk_anims[-1])
+    next_anim = "passed_out"
+    state = DOWNED
 
 func grow(amount=0.5):
     if is_instance_valid(tween):
@@ -71,7 +77,6 @@ func grow(amount=0.5):
     tween = get_tree().create_tween()
     target_size += amount
     tween.tween_property(self, "size", target_size, 0.5)
-
 
 func _process(_delta):
     for g in growables:
@@ -81,9 +86,16 @@ func _process(_delta):
     progress_bar.points = PackedVector2Array([Vector2(-impulse_cd.time_left * 20, 0), Vector2(impulse_cd.time_left * 20, 0)])
 
 func _on_impulse_cooldown_timeout():
-    dustspin.visible = true
-    dustspin.play()
-    apply_central_impulse(direction * power)
+    if state == MOVING:
+        dustspin.visible = true
+        dustspin.play()
+        apply_central_impulse(direction * power)
+        if inebriation > 0:
+            if not randi() % 20:
+                fall()
+    if state == DOWNED:
+        if not randi() % 6:
+            recover()
     if facing_right:
         power += randf_range(0, 2)
     power += randf_range(-1, 1)

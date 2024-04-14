@@ -12,7 +12,8 @@ var items = {
         "cost": 4,
         "growth": 0.2,
         "alcohol": null,
-        "strength": 0.5,
+        "strength": 6,
+        "slow": null,
         "texture": "res://sprite/Sushirulla.png"
     },
     Item.SAKE: {
@@ -20,15 +21,17 @@ var items = {
         "cost": 6,
         "growth": null,
         "alcohol": 1,
-        "strength": 0.3,
+        "strength": 15,
+        "slow": null,
         "texture": "res://sprite/Sake.png"
     },
     Item.ONIGIRI: {
-        "description": "++weight\n3 mana",
+        "description": "++weight\n-speed\n3 mana",
         "cost": 3,
         "growth": 0.4,
-        "strength": 0.1,
+        "strength": 3,
         "alcohol": null,
+        "slow": 0.2,
         "texture": "res://sprite/Onigiri.png"
     }
 }
@@ -40,15 +43,22 @@ func status_effects():
     var weight_effect = 0.0
     var alcohol = 0
     var strength = 0.0
+    var slow = 0.0
     for item in equipped_items:
         if item["growth"]: weight_effect += item["growth"]
         if item["alcohol"]: alcohol += item["alcohol"]
         if item["strength"]: strength += item["strength"]
+        if item["slow"]: slow += item["slow"]
     return {
         "weight": weight_effect,
         "inebriation": alcohol,
-        "strength": strength
+        "strength": strength,
+        "slow": slow
     }
+
+func reset():
+    equipped_items = []
+    mana = max_mana
 
 func _ready():
     phase = Phase.INTRO

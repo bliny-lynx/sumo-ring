@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqeatk6oiamho"]
+[gd_scene load_steps=7 format=3 uid="uid://dqeatk6oiamho"]
 
 [ext_resource type="Script" path="res://scene/sumo_circle.gd" id="1_qkgst"]
 [ext_resource type="Texture2D" uid="uid://dog6h45jfr67e" path="res://sprite/sumoring.png" id="1_v8mh2"]
 [ext_resource type="PackedScene" uid="uid://nt76ymcyuoeu" path="res://scene/fat_man.tscn" id="2_35j1d"]
+[ext_resource type="PackedScene" uid="uid://2g8a68umk4io" path="res://scene/scene_transition.tscn" id="2_58gm2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_035ip"]
 size = Vector2(20, 79)
@@ -12,6 +13,8 @@ size = Vector2(20, 80)
 
 [node name="SumoCircle" type="Node2D"]
 script = ExtResource("1_qkgst")
+
+[node name="SceneTransition" parent="." instance=ExtResource("2_58gm2")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(320, 241)

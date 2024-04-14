@@ -243,7 +243,6 @@ script = ExtResource("1_katwf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_whjru")
-animation = &"fail"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
