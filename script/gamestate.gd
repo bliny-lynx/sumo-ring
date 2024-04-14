@@ -12,7 +12,7 @@ var items = {
         "cost": 4,
         "growth": 0.2,
         "alcohol": null,
-        "strength": 6,
+        "strength": 8,
         "slow": null,
         "texture": "res://sprite/Sushirulla.png"
     },
@@ -21,7 +21,7 @@ var items = {
         "cost": 6,
         "growth": null,
         "alcohol": 1,
-        "strength": 15,
+        "strength": 32,
         "slow": null,
         "texture": "res://sprite/Sake.png"
     },

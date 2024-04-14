@@ -24,6 +24,7 @@ func _process(_delta):
 
 
 func _on_button_pressed():
+    Audio.gong_sfx()
     $Timer.start()
     $SceneTransition.fade_out()
 
@@ -62,7 +63,7 @@ func summon(type):
         $FatMan.recover()
 
 func fail_summon():
-    #TODO(sound): play fail sound
+    Audio.error_sfx()
     var new_item = consumable.instantiate()
     new_item.type = Gamestate.Item.FAIL_SUMMON
     new_item.position = item_slots[curr_idx].position
@@ -74,6 +75,7 @@ func _on_item_list_item_clicked(index, _at_position, _mouse_button_index):
     effect_info.text = Gamestate.items[index]["description"]
 
 func _on_summonbutton_pressed():
+
     var type = $ItemList.get_selected_items()[0]
     if !can_summon(type):
         fail_summon()

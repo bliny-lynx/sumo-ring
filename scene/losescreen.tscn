@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0y4mpviv0q6o"]
+
+[ext_resource type="Script" path="res://script/winscreen.gd" id="1_otgpg"]
+[ext_resource type="Texture2D" uid="uid://byxmg0dg04vke" path="res://sprite/lose_bg.png" id="2_fpka1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6lwla"]
+font_size = 24
+
+[node name="Losescreen" type="Node2D"]
+script = ExtResource("1_otgpg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(320, 240)
+texture = ExtResource("2_fpka1")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 261.0
+offset_top = 249.0
+offset_right = 341.0
+offset_bottom = 273.0
+text = "You lost!
+"
+label_settings = SubResource("LabelSettings_6lwla")
+
+[node name="Retirebutton" type="Button" parent="."]
+offset_left = 472.0
+offset_top = 249.0
+offset_right = 534.0
+offset_bottom = 274.0
+text = "Retire"
+
+[node name="Continuebutton" type="Button" parent="."]
+offset_left = 396.0
+offset_top = 249.0
+offset_right = 458.0
+offset_bottom = 274.0
+text = "Try again"
+
+[connection signal="pressed" from="Retirebutton" to="." method="_on_retirebutton_pressed"]
+[connection signal="pressed" from="Continuebutton" to="." method="_on_continuebutton_pressed"]

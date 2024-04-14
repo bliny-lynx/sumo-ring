@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://cs01ywxtb0wdp"]
 
 [ext_resource type="Script" path="res://script/lockerroom.gd" id="1_e7bpc"]
-[ext_resource type="Texture2D" uid="uid://b774bgduhygtq" path="res://sprite/lockerplaceholder.png" id="2_hc8q0"]
 [ext_resource type="PackedScene" uid="uid://2g8a68umk4io" path="res://scene/scene_transition.tscn" id="2_ipswx"]
+[ext_resource type="Texture2D" uid="uid://deto73pi3cnl" path="res://sprite/locker_bg.png" id="3_6r8hg"]
 [ext_resource type="Texture2D" uid="uid://cgqmjxbryo30r" path="res://sprite/Sushirulla.png" id="3_ob1nk"]
 [ext_resource type="Texture2D" uid="uid://dcdqs54oljlbi" path="res://sprite/Onigiri.png" id="4_d8f2w"]
 [ext_resource type="Texture2D" uid="uid://lnmgy5j7v6d" path="res://sprite/Sake.png" id="5_yufq3"]
@@ -19,8 +19,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_right = 640.0
-offset_bottom = 480.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1280.0
+offset_bottom = 960.0
 grow_horizontal = 1
 grow_vertical = 1
 size_flags_horizontal = 0
@@ -28,7 +30,7 @@ size_flags_vertical = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(321, 240)
-texture = ExtResource("2_hc8q0")
+texture = ExtResource("3_6r8hg")
 
 [node name="ItemList" type="ItemList" parent="."]
 offset_left = 95.0
@@ -79,22 +81,22 @@ texture_under = ExtResource("6_cpmue")
 texture_progress = ExtResource("6_706wd")
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(175, 320)
+position = Vector2(176, 314)
 
 [node name="Marker2D2" type="Marker2D" parent="."]
-position = Vector2(259, 324)
+position = Vector2(252, 316)
 
 [node name="Marker2D3" type="Marker2D" parent="."]
-position = Vector2(337, 324)
+position = Vector2(320, 315)
 
 [node name="Marker2D4" type="Marker2D" parent="."]
-position = Vector2(414, 321)
+position = Vector2(397, 313)
 
 [node name="Marker2D5" type="Marker2D" parent="."]
-position = Vector2(475, 320)
+position = Vector2(462, 314)
 
 [node name="FatMan" parent="." instance=ExtResource("6_d8rjf")]
-position = Vector2(320, 174)
+position = Vector2(318, 200)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.578

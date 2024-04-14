@@ -23,17 +23,23 @@ func _on_timer_timeout():
         print_debug("Should nvever happen, timer started during battle")
     if state == VICTORY:
         win()
+    if state == LOSS:
+        lose()
 
 func _on_lose_area_body_entered(_body):
     state = LOSS
     $SceneTransition.fade_out()
     $Timer.start()
 
+func lose():
+    Audio.grunt_sfx()
+    get_tree().change_scene_to_file("res://scene/losescreen.tscn")
+
 func win():
+    Audio.koto_sfx()
     get_tree().change_scene_to_file("res://scene/winscreen.tscn")
 
 func _on_victory_area_body_entered(_body):
-    # TODO(sound) :  play victory
     state = VICTORY
     $SceneTransition.fade_out()
     $Timer.start()

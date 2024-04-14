@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://dqeatk6oiamho"]
 
 [ext_resource type="Script" path="res://scene/sumo_circle.gd" id="1_qkgst"]
-[ext_resource type="Texture2D" uid="uid://dog6h45jfr67e" path="res://sprite/sumoring.png" id="1_v8mh2"]
 [ext_resource type="PackedScene" uid="uid://nt76ymcyuoeu" path="res://scene/fat_man.tscn" id="2_35j1d"]
 [ext_resource type="PackedScene" uid="uid://2g8a68umk4io" path="res://scene/scene_transition.tscn" id="2_58gm2"]
+[ext_resource type="Texture2D" uid="uid://bi1tyubihgq58" path="res://sprite/sumo_ring_bg.png" id="3_kanc3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_035ip"]
 size = Vector2(20, 79)
@@ -18,30 +18,30 @@ script = ExtResource("1_qkgst")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(320, 241)
-texture = ExtResource("1_v8mh2")
+texture = ExtResource("3_kanc3")
 
 [node name="FatMan" parent="." instance=ExtResource("2_35j1d")]
-position = Vector2(213, 387)
+position = Vector2(196, 338)
 
 [node name="FatMan2" parent="." instance=ExtResource("2_35j1d")]
-position = Vector2(432, 387)
+position = Vector2(445, 338)
 facing_right = false
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
 [node name="VictoryArea" type="Area2D" parent="."]
-position = Vector2(528, 376)
+position = Vector2(517, 348)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VictoryArea"]
-position = Vector2(2, 15)
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_035ip")
 
 [node name="LoseArea" type="Area2D" parent="."]
-position = Vector2(133, 379)
+position = Vector2(130, 350)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LoseArea"]
-position = Vector2(-3, -3)
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_7skns")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

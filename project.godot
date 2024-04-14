@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="ld55"
-run/main_scene="res://scene/lockerroom.tscn"
+config/name="Sumo Ring"
+config/description="LD55 game."
+run/main_scene="res://scene/cutscene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://sprite/Sake.png"
 
 [autoload]
 
